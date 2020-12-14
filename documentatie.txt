@@ -1,0 +1,24 @@
+
+
+Tehnologiile utilizate:
+
+Pentru comunicare vom folosi protocolul TCP, deoarece acesta ne asigura ca fisierele care ajung la client sunt copii exacte ale celor de pe server ( pachetele de date ajung in aceeasi ordine in care au fost trimise, sunt eliminate duplicatele si se retransmit pachetele lipsa)
+
+
+Arhitectura aplicatiei:
+
+Client:
+
+-initiaza conexiunea TCP catre server
+-foloseste comanda login pentru a se autentifica
+-foloseste celelalte comenzi pentru a obtine o lista cu fisierele de pe server, a uploada, descarca sau sterge un fisier de pe server
+-inchide conexiunea TCP
+-intrebam utilizatorul daca doreste sa mai execute si alte comenzi (caz in care vom deschide o noua conexiune TCP), sau sa iasa din program
+
+
+Server:
+
+-monitorizeaza un port pentru a accepta eventuale conexiuni din partea clientilor
+-este concurent (poate servi mai multi clienti simultan)
+-nu lasa clientii sa foloseasca alta comanda in afara de login daca nu sunt logati
+-face actiunile cerute de clienti prin comenzile add, delete, list, get
